@@ -11,6 +11,8 @@ const Auth =() => {
             provider = new firebaseInstance.auth.GoogleAuthProvider();
         }else if(name ==="github"){
             provider = new firebaseInstance.auth.GithubAuthProvider();
+        }else if(name ==="facebook"){
+            provider = new firebaseInstance.auth.FacebookAuthProvider();
         }
         await authService.signInWithPopup(provider);
     }
@@ -23,6 +25,9 @@ const Auth =() => {
             </button>
             <button onClick={onSocialClick} name="github">
                 Continue with GitHub
+            </button>
+            <button onClick={onSocialClick} name="facebook">
+                Continue with FaceBook
             </button>
         </div>
     </div>
