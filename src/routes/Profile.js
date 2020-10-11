@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import { useHistory } from "react-router-dom";
-import { authService, dbService } from "../fbase";
+import { authService} from "../fbase";
 
 
 export default({refreshUser, userObj})=>{
@@ -14,18 +14,6 @@ export default({refreshUser, userObj})=>{
         const{target:{value},} = event;
         setNewDisplayName(value);
     };
-
-    const getMyWalks = async () => {
-        const walks = await dbService
-        .collection("walks")
-        .where("creatorId", "==",userObj.uid)
-        .orderBy("createdAt","asc")
-        .get();
-        console.log(walks.docs.map((doc) => doc.data()));
-    };
-    useEffect(() => {
-        getMyWalks();
-    },[]);
     const onSubmit = async (event) => {
         event.preventDefault();
         if(userObj.displayName !== newDisplayName){
@@ -35,6 +23,19 @@ export default({refreshUser, userObj})=>{
             refreshUser();
         }
     };
+
+    // const getMyWalks = async () => {
+    //     const walks = await dbService
+    //     .collection("walks")
+    //     .where("creatorId", "==",userObj.uid)
+    //     .orderBy("createdAt","asc")
+    //     .get();
+    //     console.log(walks.docs.map((doc) => doc.data()));
+    // };
+    // useEffect(() => {
+    //     getMyWalks();
+    // },[]);
+    
     return(
         <>
         <form onSubmit={onSubmit}>
