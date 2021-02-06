@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
 import fbase from "./fbase";
-import "/mydashboard/src/styles.css"
+import "./styles.css";
 
 console.log(fbase)
 
